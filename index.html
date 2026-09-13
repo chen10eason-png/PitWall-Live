@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#0b0d10" />
+  <title>PitWall Live</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="icons/icon.svg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="app-shell">
+  <header class="topbar">
+    <div class="brand-wrap">
+      <div class="brand-mark">PW</div>
+      <div>
+        <div class="brand">PitWall Live</div>
+        <div class="subbrand">Formula Live Companion</div>
+      </div>
+    </div>
+    <button id="refreshBtn" class="icon-btn" aria-label="重新整理">↻</button>
+  </header>
+
+  <main>
+    <section id="home" class="page active">
+      <div class="hero-card">
+        <div class="eyebrow">NEXT RACE</div>
+        <div class="hero-grid">
+          <div>
+            <h1 id="nextRaceName">Singapore Grand Prix</h1>
+            <p id="nextRaceDate">2026/10/11 · 20:00 台北時間</p>
+          </div>
+          <div class="countdown" id="countdown">27d 22:19</div>
+        </div>
+        <div class="hero-meta">
+          <span>Marina Bay</span><span>夜賽</span><span>61 Laps</span>
+        </div>
+      </div>
+
+      <div class="section-head"><h2>快速追蹤</h2><button class="text-btn" data-jump="live">進入 LIVE</button></div>
+      <div class="track-grid" id="favoriteDrivers"></div>
+
+      <div class="section-head"><h2>積分領先</h2><span class="pill">2026</span></div>
+      <div class="split-cards">
+        <article class="card">
+          <div class="card-label">WDC</div>
+          <div class="leader-row"><div><b id="wdcLeader">NOR</b><span id="wdcTeam">McLaren</span></div><strong id="wdcPoints">312</strong></div>
+          <div class="progress"><i style="width:82%"></i></div>
+        </article>
+        <article class="card">
+          <div class="card-label">WCC</div>
+          <div class="leader-row"><div><b id="wccLeader">McLaren</b><span id="wccGap">+64 pts</span></div><strong id="wccPoints">548</strong></div>
+          <div class="progress"><i style="width:90%"></i></div>
+        </article>
+      </div>
+
+      <div class="section-head"><h2>Race Weekend</h2></div>
+      <div class="timeline" id="weekendTimeline"></div>
+    </section>
+
+    <section id="live" class="page">
+      <div class="live-header">
+        <div><div class="eyebrow live-dot">LIVE</div><h1 id="liveRaceTitle">Singapore GP</h1><p id="liveLap">Lap 39 / 61</p></div>
+        <div class="status-pill" id="raceStatus">GREEN</div>
+      </div>
+
+      <div class="segmented" role="tablist">
+        <button class="seg active" data-live-view="timing">Timing</button>
+        <button class="seg" data-live-view="map">Map</button>
+        <button class="seg" data-live-view="control">Control</button>
+      </div>
+
+      <div id="timingView" class="live-view active">
+        <div class="timing-head"><span>P</span><span>Driver</span><span>Gap</span><span>Tyre</span><span>Pit</span></div>
+        <div id="timingTable" class="timing-table"></div>
+      </div>
+
+      <div id="mapView" class="live-view">
+        <div class="track-card">
+          <svg viewBox="0 0 400 260" class="track-map" aria-label="示意賽道圖">
+            <path d="M74 176 C 84 102, 116 55, 173 47 C 224 40, 316 58, 336 113 C 353 159, 318 209, 265 214 C 203 220, 157 193, 122 216 C 95 233, 62 213, 74 176 Z" />
+            <g id="carDots"></g>
+          </svg>
+          <div class="map-legend">賽道位置為 V1 模擬；V2 會接即時座標。</div>
+        </div>
+      </div>
+
+      <div id="controlView" class="live-view">
+        <div id="raceControlFeed" class="control-feed"></div>
+      </div>
+    </section>
+
+    <section id="schedule" class="page">
+      <div class="page-title"><div><div class="eyebrow">CALENDAR</div><h1>2026 賽程</h1></div><span class="pill">台北時間</span></div>
+      <div id="scheduleList" class="schedule-list"></div>
+    </section>
+
+    <section id="standings" class="page">
+      <div class="page-title"><div><div class="eyebrow">CHAMPIONSHIP</div><h1>積分榜</h1></div></div>
+      <div class="segmented small"><button class="seg active" data-standing="drivers">車手</button><button class="seg" data-standing="teams">車隊</button></div>
+      <div id="driversStandings" class="standings active"></div>
+      <div id="teamsStandings" class="standings"></div>
+    </section>
+
+    <section id="profile" class="page">
+      <div class="page-title"><div><div class="eyebrow">DRIVER</div><h1 id="profileName">Lando Norris</h1></div><span class="pill" id="profileNumber">#4</span></div>
+      <article class="driver-card-large">
+        <div class="driver-identity"><div class="helmet">LN</div><div><h2 id="profileCode">NOR</h2><p id="profileTeam">McLaren</p></div></div>
+        <div class="driver-stats"><div><span>Points</span><b id="profilePts">312</b></div><div><span>Wins</span><b>6</b></div><div><span>Podiums</span><b>12</b></div><div><span>Best</span><b>P1</b></div></div>
+      </article>
+      <div class="section-head"><h2>最近 5 站</h2></div>
+      <div class="recent-grid"><div>P2<small>ITA</small></div><div>P1<small>NED</small></div><div>P3<small>BEL</small></div><div>P1<small>GBR</small></div><div>P4<small>AUT</small></div></div>
+      <div class="section-head"><h2>輪胎 / 進站</h2></div>
+      <div class="strategy-row"><span class="tyre medium">M</span><div><b>Medium</b><small>目前 12 laps</small></div><span class="strategy-arrow">→</span><span class="tyre hard">H</span><div><b>Hard</b><small>預測 +22 laps</small></div></div>
+    </section>
+  </main>
+
+  <nav class="bottom-nav" aria-label="主選單">
+    <button class="nav-btn active" data-page="home"><span>⌂</span><small>首頁</small></button>
+    <button class="nav-btn" data-page="live"><span>●</span><small>LIVE</small></button>
+    <button class="nav-btn" data-page="schedule"><span>▦</span><small>賽程</small></button>
+    <button class="nav-btn" data-page="standings"><span>≡</span><small>積分</small></button>
+    <button class="nav-btn" data-page="profile"><span>◎</span><small>車手</small></button>
+  </nav>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
