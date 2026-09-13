@@ -1,0 +1,54 @@
+{
+  "season": 2026,
+  "checked_at": "2026-09-13T14:20:00Z",
+  "source": "https://www.formula1.com/",
+  "current_round": 14,
+  "current_event": {
+    "round": 14,
+    "country": "Spain",
+    "name": "FORMULA 1 TAG HEUER GRAN PREMIO DE ESPAÑA 2026",
+    "short_name": "Spanish Grand Prix",
+    "circuit": "Madring",
+    "start_date": "2026-09-11",
+    "end_date": "2026-09-13"
+  },
+  "driver_standings": [
+    {"position":1,"name":"Kimi Antonelli","code":"ANT","team":"Mercedes","points":267},
+    {"position":2,"name":"George Russell","code":"RUS","team":"Mercedes","points":201},
+    {"position":3,"name":"Lewis Hamilton","code":"HAM","team":"Ferrari","points":191},
+    {"position":4,"name":"Lando Norris","code":"NOR","team":"McLaren","points":171},
+    {"position":5,"name":"Charles Leclerc","code":"LEC","team":"Ferrari","points":155},
+    {"position":6,"name":"Max Verstappen","code":"VER","team":"Red Bull Racing","points":127}
+  ],
+  "team_standings": [
+    {"position":1,"name":"Mercedes","points":468},
+    {"position":2,"name":"Ferrari","points":346},
+    {"position":3,"name":"McLaren","points":287},
+    {"position":4,"name":"Red Bull Racing","points":168}
+  ],
+  "calendar": [
+    {"round":1,"country":"Australia","name":"Australian Grand Prix","start":"2026-03-06","end":"2026-03-08"},
+    {"round":2,"country":"China","name":"Chinese Grand Prix","start":"2026-03-13","end":"2026-03-15"},
+    {"round":3,"country":"Japan","name":"Japanese Grand Prix","start":"2026-03-27","end":"2026-03-29"},
+    {"round":4,"country":"United States","name":"Miami Grand Prix","start":"2026-05-01","end":"2026-05-03"},
+    {"round":5,"country":"Canada","name":"Canadian Grand Prix","start":"2026-05-22","end":"2026-05-24"},
+    {"round":6,"country":"Monaco","name":"Monaco Grand Prix","start":"2026-06-05","end":"2026-06-07"},
+    {"round":7,"country":"Spain","name":"Barcelona-Catalunya Grand Prix","start":"2026-06-12","end":"2026-06-14"},
+    {"round":8,"country":"Austria","name":"Austrian Grand Prix","start":"2026-06-26","end":"2026-06-28"},
+    {"round":9,"country":"Great Britain","name":"British Grand Prix","start":"2026-07-03","end":"2026-07-05"},
+    {"round":10,"country":"Belgium","name":"Belgian Grand Prix","start":"2026-07-17","end":"2026-07-19"},
+    {"round":11,"country":"Hungary","name":"Hungarian Grand Prix","start":"2026-07-24","end":"2026-07-26"},
+    {"round":12,"country":"Netherlands","name":"Dutch Grand Prix","start":"2026-08-21","end":"2026-08-23"},
+    {"round":13,"country":"Italy","name":"Italian Grand Prix","start":"2026-09-04","end":"2026-09-06"},
+    {"round":14,"country":"Spain","name":"Spanish Grand Prix","start":"2026-09-11","end":"2026-09-13"},
+    {"round":15,"country":"Azerbaijan","name":"Azerbaijan Grand Prix","start":"2026-09-24","end":"2026-09-26"},
+    {"round":16,"country":"Malaysia","name":"Bahrain Grand Prix in Malaysia","start":"2026-10-02","end":"2026-10-04"},
+    {"round":17,"country":"Singapore","name":"Singapore Grand Prix","start":"2026-10-09","end":"2026-10-11"},
+    {"round":18,"country":"United States","name":"United States Grand Prix","start":"2026-10-23","end":"2026-10-25"},
+    {"round":19,"country":"Mexico","name":"Mexico City Grand Prix","start":"2026-10-30","end":"2026-11-01"},
+    {"round":20,"country":"Brazil","name":"São Paulo Grand Prix","start":"2026-11-06","end":"2026-11-08"},
+    {"round":21,"country":"United States","name":"Las Vegas Grand Prix","start":"2026-11-19","end":"2026-11-21"},
+    {"round":22,"country":"Qatar","name":"Qatar Grand Prix","start":"2026-11-27","end":"2026-11-29"},
+    {"round":23,"country":"United Arab Emirates","name":"Abu Dhabi Grand Prix","start":"2026-12-04","end":"2026-12-06"}
+  ]
+}
