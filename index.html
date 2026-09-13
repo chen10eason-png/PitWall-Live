@@ -3,127 +3,64 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <meta name="theme-color" content="#0b0d10" />
-  <title>PitWall Live</title>
+  <meta name="theme-color" content="#090b0f" />
+  <title>PitWall Live V1.1</title>
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="icon" href="icons/icon.svg" type="image/svg+xml" />
-  <link rel="apple-touch-icon" href="icons/icon.svg" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 <div class="app-shell">
   <header class="topbar">
-    <div class="brand-wrap">
-      <div class="brand-mark">PW</div>
-      <div>
-        <div class="brand">PitWall Live</div>
-        <div class="subbrand">Formula Live Companion</div>
-      </div>
-    </div>
+    <div class="brand-wrap"><div class="brand-mark">PW</div><div><div class="brand">PitWall Live</div><div class="subbrand">Official-first F1 companion · V1.1</div></div></div>
     <button id="refreshBtn" class="icon-btn" aria-label="重新整理">↻</button>
   </header>
 
   <main>
     <section id="home" class="page active">
+      <div id="sourceBanner" class="source-banner"><span class="dot"></span><div><b id="sourceState">正在檢查資料來源…</b><small id="sourceDetail">官方 F1 作為基準；OpenF1 提供結構化資料。</small></div></div>
+
       <div class="hero-card">
-        <div class="eyebrow">NEXT RACE</div>
-        <div class="hero-grid">
-          <div>
-            <h1 id="nextRaceName">Singapore Grand Prix</h1>
-            <p id="nextRaceDate">2026/10/11 · 20:00 台北時間</p>
-          </div>
-          <div class="countdown" id="countdown">27d 22:19</div>
-        </div>
-        <div class="hero-meta">
-          <span>Marina Bay</span><span>夜賽</span><span>61 Laps</span>
-        </div>
+        <div class="eyebrow" id="heroEyebrow">CURRENT / NEXT WEEKEND</div>
+        <div class="hero-grid"><div><h1 id="nextRaceName">載入中…</h1><p id="nextRaceDate">—</p></div><div class="countdown" id="countdown">—</div></div>
+        <div class="hero-meta"><span id="raceCountry">—</span><span id="raceCircuit">—</span><span id="raceRound">—</span></div>
       </div>
 
-      <div class="section-head"><h2>快速追蹤</h2><button class="text-btn" data-jump="live">進入 LIVE</button></div>
-      <div class="track-grid" id="favoriteDrivers"></div>
+      <div class="section-head"><h2>資料狀態</h2><button class="text-btn" id="officialBtn">F1 官方核對 ↗</button></div>
+      <div class="status-grid">
+        <article class="card"><div class="card-label">官方基準</div><b>Formula1.com</b><small id="officialChecked">Snapshot —</small></article>
+        <article class="card"><div class="card-label">結構化資料</div><b>OpenF1</b><small id="openF1State">檢查中</small></article>
+        <article class="card"><div class="card-label">LIVE</div><b id="liveModeLabel">未連線</b><small id="liveModeNote">不顯示假即時資料</small></article>
+      </div>
 
-      <div class="section-head"><h2>積分領先</h2><span class="pill">2026</span></div>
+      <div class="section-head"><h2>目前積分領先</h2><span class="pill">2026</span></div>
       <div class="split-cards">
-        <article class="card">
-          <div class="card-label">WDC</div>
-          <div class="leader-row"><div><b id="wdcLeader">NOR</b><span id="wdcTeam">McLaren</span></div><strong id="wdcPoints">312</strong></div>
-          <div class="progress"><i style="width:82%"></i></div>
-        </article>
-        <article class="card">
-          <div class="card-label">WCC</div>
-          <div class="leader-row"><div><b id="wccLeader">McLaren</b><span id="wccGap">+64 pts</span></div><strong id="wccPoints">548</strong></div>
-          <div class="progress"><i style="width:90%"></i></div>
-        </article>
+        <article class="card"><div class="card-label">WDC</div><div class="leader-row"><div><b id="wdcLeader">—</b><span id="wdcTeam">—</span></div><strong id="wdcPoints">—</strong></div></article>
+        <article class="card"><div class="card-label">WCC</div><div class="leader-row"><div><b id="wccLeader">—</b><span>Constructors</span></div><strong id="wccPoints">—</strong></div></article>
       </div>
+      <p class="data-note" id="standingNote">載入資料中…</p>
 
-      <div class="section-head"><h2>Race Weekend</h2></div>
-      <div class="timeline" id="weekendTimeline"></div>
+      <div class="section-head"><h2>本週末 Sessions</h2></div>
+      <div class="timeline" id="weekendTimeline"><div class="empty">載入中…</div></div>
     </section>
 
     <section id="live" class="page">
-      <div class="live-header">
-        <div><div class="eyebrow live-dot">LIVE</div><h1 id="liveRaceTitle">Singapore GP</h1><p id="liveLap">Lap 39 / 61</p></div>
-        <div class="status-pill" id="raceStatus">GREEN</div>
-      </div>
-
-      <div class="segmented" role="tablist">
-        <button class="seg active" data-live-view="timing">Timing</button>
-        <button class="seg" data-live-view="map">Map</button>
-        <button class="seg" data-live-view="control">Control</button>
-      </div>
-
-      <div id="timingView" class="live-view active">
-        <div class="timing-head"><span>P</span><span>Driver</span><span>Gap</span><span>Tyre</span><span>Pit</span></div>
-        <div id="timingTable" class="timing-table"></div>
-      </div>
-
-      <div id="mapView" class="live-view">
-        <div class="track-card">
-          <svg viewBox="0 0 400 260" class="track-map" aria-label="示意賽道圖">
-            <path d="M74 176 C 84 102, 116 55, 173 47 C 224 40, 316 58, 336 113 C 353 159, 318 209, 265 214 C 203 220, 157 193, 122 216 C 95 233, 62 213, 74 176 Z" />
-            <g id="carDots"></g>
-          </svg>
-          <div class="map-legend">賽道位置為 V1 模擬；V2 會接即時座標。</div>
-        </div>
-      </div>
-
-      <div id="controlView" class="live-view">
-        <div id="raceControlFeed" class="control-feed"></div>
-      </div>
+      <div class="live-header"><div><div class="eyebrow" id="liveEyebrow">LIVE DATA</div><h1 id="liveRaceTitle">即時賽況</h1><p id="liveSession">正在檢查目前 Session</p></div><div class="status-pill offline" id="raceStatus">OFFLINE</div></div>
+      <div id="liveNotice" class="notice"><b>不會使用模擬資料冒充 LIVE。</b><span>若即時 API 未授權、沒有正在進行的 Session，這裡會直接顯示未連線。</span></div>
+      <div class="segmented"><button class="seg active" data-live-view="timing">Timing</button><button class="seg" data-live-view="control">Race Control</button><button class="seg" data-live-view="about">資料說明</button></div>
+      <div id="timingView" class="live-view active"><div class="timing-head"><span>P</span><span>Driver</span><span>Gap</span><span>Tyre</span><span>Pit</span></div><div id="timingTable" class="timing-table"><div class="empty">尚未取得即時資料</div></div></div>
+      <div id="controlView" class="live-view"><div id="raceControlFeed" class="control-feed"><div class="empty">尚未取得 Race Control</div></div></div>
+      <div id="aboutView" class="live-view"><article class="explain-card"><h2>LIVE 如何取得？</h2><p>OpenF1 的即時 Timing / Interval / Race Control 目前需要授權 Token。為避免 Token 暴露，正式版會由後端代理，不會把密鑰寫進 GitHub Pages。</p><p>目前 GitHub Pages 版會嘗試公開可讀資料；若伺服器回傳未授權，就明確顯示 OFFLINE。</p></article></div>
     </section>
 
-    <section id="schedule" class="page">
-      <div class="page-title"><div><div class="eyebrow">CALENDAR</div><h1>2026 賽程</h1></div><span class="pill">台北時間</span></div>
-      <div id="scheduleList" class="schedule-list"></div>
-    </section>
+    <section id="schedule" class="page"><div class="page-title"><div><div class="eyebrow">OFFICIAL-FIRST CALENDAR</div><h1>2026 賽程</h1></div><span class="pill">自動更新</span></div><p class="data-note">優先從 OpenF1 sessions 取得結構化時間；頁面提供 F1 官方賽程連結做核對。</p><div id="scheduleList" class="schedule-list"><div class="empty">載入中…</div></div></section>
 
-    <section id="standings" class="page">
-      <div class="page-title"><div><div class="eyebrow">CHAMPIONSHIP</div><h1>積分榜</h1></div></div>
-      <div class="segmented small"><button class="seg active" data-standing="drivers">車手</button><button class="seg" data-standing="teams">車隊</button></div>
-      <div id="driversStandings" class="standings active"></div>
-      <div id="teamsStandings" class="standings"></div>
-    </section>
+    <section id="standings" class="page"><div class="page-title"><div><div class="eyebrow">CHAMPIONSHIP</div><h1>積分榜</h1></div><span class="pill" id="standingsSource">Official snapshot</span></div><div class="segmented small"><button class="seg active" data-standing="drivers">車手</button><button class="seg" data-standing="teams">車隊</button></div><div id="driversStandings" class="standings active"></div><div id="teamsStandings" class="standings"></div></section>
 
-    <section id="profile" class="page">
-      <div class="page-title"><div><div class="eyebrow">DRIVER</div><h1 id="profileName">Lando Norris</h1></div><span class="pill" id="profileNumber">#4</span></div>
-      <article class="driver-card-large">
-        <div class="driver-identity"><div class="helmet">LN</div><div><h2 id="profileCode">NOR</h2><p id="profileTeam">McLaren</p></div></div>
-        <div class="driver-stats"><div><span>Points</span><b id="profilePts">312</b></div><div><span>Wins</span><b>6</b></div><div><span>Podiums</span><b>12</b></div><div><span>Best</span><b>P1</b></div></div>
-      </article>
-      <div class="section-head"><h2>最近 5 站</h2></div>
-      <div class="recent-grid"><div>P2<small>ITA</small></div><div>P1<small>NED</small></div><div>P3<small>BEL</small></div><div>P1<small>GBR</small></div><div>P4<small>AUT</small></div></div>
-      <div class="section-head"><h2>輪胎 / 進站</h2></div>
-      <div class="strategy-row"><span class="tyre medium">M</span><div><b>Medium</b><small>目前 12 laps</small></div><span class="strategy-arrow">→</span><span class="tyre hard">H</span><div><b>Hard</b><small>預測 +22 laps</small></div></div>
-    </section>
+    <section id="settings" class="page"><div class="page-title"><div><div class="eyebrow">SETTINGS</div><h1>資料與版本</h1></div><span class="pill">V1.1</span></div><article class="explain-card"><h2>資料策略</h2><p><b>Formula 1 官方網站</b>：賽程、結果、積分的最終核對來源。</p><p><b>OpenF1</b>：提供可程式化的 sessions、drivers、results、timing、race control 等資料。</p><p><b>原則</b>：抓不到就顯示抓不到，不補假資料。</p></article><div class="link-list"><a href="https://www.formula1.com/en/racing/2026" target="_blank" rel="noopener">F1 官方 2026 Calendar ↗</a><a href="https://www.formula1.com/en/results/2026/drivers" target="_blank" rel="noopener">F1 官方 Driver Standings ↗</a><a href="https://www.formula1.com/en/results/2026/team" target="_blank" rel="noopener">F1 官方 Team Standings ↗</a><a href="https://openf1.org/docs/" target="_blank" rel="noopener">OpenF1 API Docs ↗</a></div></section>
   </main>
 
-  <nav class="bottom-nav" aria-label="主選單">
-    <button class="nav-btn active" data-page="home"><span>⌂</span><small>首頁</small></button>
-    <button class="nav-btn" data-page="live"><span>●</span><small>LIVE</small></button>
-    <button class="nav-btn" data-page="schedule"><span>▦</span><small>賽程</small></button>
-    <button class="nav-btn" data-page="standings"><span>≡</span><small>積分</small></button>
-    <button class="nav-btn" data-page="profile"><span>◎</span><small>車手</small></button>
-  </nav>
+  <nav class="bottom-nav" aria-label="主選單"><button class="nav-btn active" data-page="home"><span>⌂</span><small>首頁</small></button><button class="nav-btn" data-page="live"><span>●</span><small>LIVE</small></button><button class="nav-btn" data-page="schedule"><span>▦</span><small>賽程</small></button><button class="nav-btn" data-page="standings"><span>≡</span><small>積分</small></button><button class="nav-btn" data-page="settings"><span>⚙</span><small>設定</small></button></nav>
 </div>
 <script src="app.js"></script>
 </body>
